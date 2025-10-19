@@ -25,7 +25,7 @@ function Estaciones() {
 	}, []);
 
 	return (
-		<div className="flex flex-row justify-around">
+		<div className="flex flex-col justify-around">
 			{estaciones.map((estacion) => (
 				<Estacion datos={estacion} key={estacion.id} />
 			))}
