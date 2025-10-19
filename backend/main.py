@@ -14,8 +14,8 @@ app.add_middleware(
 )
 
 @app.get("/bicis")
-def getBicicletas():
-    return database.bicicletas
+def getEstaciones():
+    return database.estaciones
 
 @app.get("/bicis/disponibles")
 def revisarExiste(id:int):
