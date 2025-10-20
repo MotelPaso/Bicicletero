@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # puedes limitarlo luego a ["http://localhost:5173"]
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # puedes limitarlo luego a ["http://localhost:5173"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,6 +36,19 @@ def addUser(name:str, pwd:str):
     pwd = hash(pwd)
     database.users.append({"name": name, "password": pwd, "acceso":False})
     return "Usuario Registrado!"
+
+
+@app.post("/users/checkUser")
+def checkUser(data:dict):
+    name = data["username"]
+    pwd = data["password"]
+    for user in database.users:
+        if name == user["name"]:
+            if pwd == user["password"]:
+                return True
+            else:
+                return False
+    return False
 
 
 def hash(pwd:str):
