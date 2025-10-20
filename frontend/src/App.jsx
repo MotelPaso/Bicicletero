@@ -5,15 +5,15 @@ import Estaciones from "./pages/Estaciones";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
+import Registro from "./pages/Registro";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
 	const location = useLocation();
-	const esLogin = location.pathname === "/login";
 
 	return (
 		<>
-			{!esLogin && <NavBar />}
+			<NavBar />
 			<main className="main-content">
 				<Routes>
 					<Route path="/inicio" element={<Inicio />} />
@@ -21,6 +21,7 @@ function App() {
 					<Route path="/estaciones" element={<Estaciones />} />
 					<Route path="/acerca" element={<About />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/registro" element={<Registro />} />
 				</Routes>
 			</main>
 		</>
