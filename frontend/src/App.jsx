@@ -16,7 +16,7 @@ function App() {
 			<NavBar />
 			<main className="main-content mx-10">
 				<Routes>
-					<Route path="/inicio" element={<Inicio />} />
+					<Route path="/" element={<Inicio />} />
 					<Route path="/mis-bicis" element={<MisBicis />} />
 					<Route path="/estaciones" element={<Estaciones />} />
 					<Route path="/acerca" element={<About />} />

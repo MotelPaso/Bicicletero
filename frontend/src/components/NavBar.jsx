@@ -4,7 +4,7 @@ import LoginButton from "./LoginButton";
 function NavBar() {
 	return (
 		<nav className="flex flex-row justify-between items-center mb-6 px-10">
-			<Link className="text-(--DTitle)" to="/inicio">
+			<Link className="text-(--DTitle)" to="/">
 				<p className="text-[20px]">BiciSolar UCN</p>
 			</Link>
 
