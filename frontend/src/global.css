@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root {
+	/* Colors for the page */
+	/* Dark Mode */
+	--DBG: #241d20;
+	--DLgBtn: #04a777;
+	--DBtn: #acc196;
+	--DTitle: #ffffff;
+	--DText: #fcfafa;
+	/* Light Mode TODO*/
+	font-family: "Inter", sans-serif;
+	background-color: var(--DBG);
+	margin: 0;
+}

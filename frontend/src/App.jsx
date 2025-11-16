@@ -14,7 +14,7 @@ function App() {
 	return (
 		<>
 			<NavBar />
-			<main className="main-content">
+			<main className="main-content mx-10">
 				<Routes>
 					<Route path="/inicio" element={<Inicio />} />
 					<Route path="/mis-bicis" element={<MisBicis />} />
