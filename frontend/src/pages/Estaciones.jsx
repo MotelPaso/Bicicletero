@@ -59,7 +59,7 @@ function Estaciones() {
 			)}
 			{estaciones.map((estacion) => (
 				<div key={estacion.id} className="flex flex-row items-start">
-					<div className="w-[45%]">
+					<div className="w-[55%]">
 						<Estacion
 							datos={estacion}
 							toggle={() => mostrarBicis(estacion.id)}
