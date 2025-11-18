@@ -1,15 +1,12 @@
-import Button from "../components/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
 	const [loggedIn, isLogged] = useState(false);
-
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const olvidoContra = () => {
-		// Todo: help with get new password
 		alert("no te puedo ayudar, cagaste");
 	};
 
@@ -30,6 +27,7 @@ function Login() {
 				const data = await response.json();
 				if (data) {
 					alert("Inicio de sesión exitoso");
+					window.location.href = "http://localhost:5173/estaciones"; // change to actual value
 				} else {
 					alert("Credenciales incorrectas");
 				}
@@ -50,42 +48,60 @@ function Login() {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center py-[0%] pl-[50%]">
+		<div className="flex flex-col justify-center items-center py-[0px] ">
 			<form
 				onSubmit={handleLogin}
 				action="#"
-				className="flex flex-col justify-center items-center w-[90%] py-[40%] border-2 border-solid border-black"
+				className="flex flex-col justify-center items-center w-[40%] h-[50%] rounded-2xl "
 			>
-				<h1 className="text-5xl p-6">Inicio de sesión</h1>
-				<input
-					className="p-3 m-3 w-[70%] text-black bg-white"
-					type="text"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					placeholder="Ingrese su usuario aqui!"
-				/>
-				<input
-					className="p-3 m-3 w-[70%] text-black bg-white"
-					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					placeholder="Ingrese su contraseña aqui!"
-				/>
+				<h1 className="text-[36px] font-bold py-3 text-(--DTitle)">
+					Iniciar sesión
+				</h1>
+				<div className="flex flex-col w-[60%]">
+					<p className="text-left text-[16px] text-(--DText)">
+						Nombre de usuario
+					</p>
+					<input
+						className="p-3 my-2 text-white border-1 border-(--DBorder)"
+						type="text"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						placeholder="Ingrese su usuario aqui!"
+					/>
+				</div>
+				<div className="flex flex-col w-[60%]">
+					<p className="text-left text-(--DText)">Contraseña</p>
+					<input
+						className="p-3 my-2 text-white border-1 border-(--DBorder)"
+						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						placeholder="Ingrese su contraseña aqui!"
+					/>
+				</div>
 				<button
-					className="text-lg"
+					className="text-lg text-(--DText)"
 					type="button"
 					onClick={olvidoContra}
 				>
-					Olvidaste tu contraseña??
+					Olvidaste tu contraseña?
 				</button>
-				<div className="flex flex-row justify-around w-[100%]">
-					<div className="flex flex-row justify-around p-2">
-						<Link to="/registro" className="text-lg self-center">
+				<div className="flex flex-row justify-between items-center w-[60%]">
+					<div className="flex flex-row p-2">
+						<Link
+							to="/registro"
+							className="text-[18px] text-(--DText)"
+						>
 							<p>¿No tienes una cuenta? </p>
 							<p className="text-blue-500">Regístrate aquí </p>
 						</Link>
 					</div>
-					<Button text="Ingresar" type="submit" color="green" />
+					<button
+						className="text-black bg-(--DLgBtn) rounded-2xl px-8 h-12"
+						type="submit"
+					>
+						Ingresar
+					</button>
 				</div>
 			</form>
 		</div>

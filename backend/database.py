@@ -32,8 +32,7 @@ bicicletas = [
 estaciones = [
     {"id": 1, "nombre": "Universidad Catolica del Norte", "ubicacion": "Larrondo 1281", "bicicletas": [bici for bici in bicicletas if bici["estacion"] == 1 and bici["disponible"]], "mapa": "https://maps.app.goo.gl/WwC98kNv6XzFx7bWA"},
     {"id": 2, "nombre": "Terminal de Buses", "ubicacion": "todo" ,"bicicletas": [bici for bici in bicicletas if bici["estacion"] == 2 and bici["disponible"]]},
-    {"id": 3, "nombre": "Plaza de Armas", "ubicacion": "todo" ,"bicicletas": [bici for bici in bicicletas if bici["estacion"] == 3 and bici["disponible"]]},
-    {"id": 4, "nombre": "Casa del tutupi", "ubicacion": "todo" ,"bicicletas": [bici for bici in bicicletas if bici["estacion"] == 4 and bici["disponible"]]},
+    {"id": 3, "nombre": "Plaza de Armas", "ubicacion": "todo" ,"bicicletas": [bici for bici in bicicletas if bici["estacion"] == 3 and bici["disponible"]]}
 ]
 
 
