@@ -2,11 +2,17 @@ import Estacion from "../components/Estacion";
 import api from "../services/api";
 import "../global.css";
 import { useEffect, useState } from "react";
+import FormularioBicis from "../components/FormularioBicis";
 
 function Estaciones() {
 	const [estaciones, setEstaciones] = useState([]);
 	const [cargando, setCargando] = useState(true);
 	const [error, setError] = useState(false);
+	const [estacionSeleccionada, setEstacionSeleccionada] = useState(null);
+
+	const mostrarBicis = (id) => {
+		setEstacionSeleccionada(estacionSeleccionada === id ? null : id);
+	};
 
 	const fetchEstaciones = async () => {
 		try {
@@ -52,7 +58,21 @@ function Estaciones() {
 				</>
 			)}
 			{estaciones.map((estacion) => (
-				<Estacion datos={estacion} key={estacion.id} />
+				<div key={estacion.id} className="flex flex-row items-start">
+					<div className="w-[45%]">
+						<Estacion
+							datos={estacion}
+							toggle={() => mostrarBicis(estacion.id)}
+						/>
+					</div>
+
+					<div className="w-[45%]">
+						<FormularioBicis
+							mostrar={estacionSeleccionada === estacion.id}
+							bicicletas={estacion.bicicletas}
+						/>
+					</div>
+				</div>
 			))}
 		</div>
 	);
