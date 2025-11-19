@@ -29,13 +29,15 @@ def revisarExiste(id:int):
 
 
 @app.post("/users/addUser")
-def addUser(name:str, pwd:str):
+def addUser(data:dict):
+    name = data["username"]
+    pwd = data["password"]
     for user in database.users:
-        if name in user["name"]:
-            return "Usuario ya existe!"
+        if name == user["name"]:
+            return False
     pwd = hash(pwd)
     database.users.append({"name": name, "password": pwd, "acceso":False})
-    return "Usuario Registrado!"
+    return True
 
 
 @app.post("/users/checkUser")

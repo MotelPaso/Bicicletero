@@ -6,22 +6,21 @@ export default function Registro() {
 
 	const checkExists = async (user) => {
 		try {
-			const query = await fetch("http://127.0.0.1:8000/users/checkUser", {
+			const query = await fetch("http://127.0.0.1:8000/users/addUser", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stingify(user),
+				body: JSON.stringify(user),
 			});
 			if (query.ok) {
 				const data = await query.json();
-				return data
-					? () => {
-							alert("Registrado correctamente!");
-					  }
-					: () => {
-							alert("Usuario ya existe en el sistema...");
-					  };
+
+				if (data) {
+					alert("Registrado correctamente");
+				} else {
+					alert("Usuario ya existe en el sistema...");
+				}
 			}
 		} catch (e) {
 			console.error(e);
@@ -30,38 +29,55 @@ export default function Registro() {
 
 	const createNewUser = (e) => {
 		e.preventDefault();
-		checkExists(username, password);
+		let user = { username, password };
+		checkExists(user);
 		setUsername("");
 		setPassword("");
 	};
 
 	return (
 		<>
-			<div className="text-(--DText) flex flex-col justify-center">
-				<h1 className="">Registro</h1>
+			<div className="text-(--DText) flex flex-col justify-center items-center">
+				<h1 className="text-[36px] font-bold pb-3 text-(--DTitle)">
+					Registro
+				</h1>
 				<form
-					className="flex flex-col justify-center"
+					className="flex flex-col justify-center w-[50%]"
 					onSubmit={createNewUser}
 				>
-					<input
-						value={username}
-						type="text"
-						placeholder="Ingrese su nombre"
-						onChange={(e) => {
-							setUsername(e.target.value);
-						}}
-					></input>
-					<input
-						value={password}
-						type="password"
-						placeholder="Ingrese su contraseña"
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
-					></input>
-					<button className="" type="submit">
-						Registrarme
-					</button>
+					<div className="py-5">
+						<p className="text-left text-[20px] text-(--DText) pb-2">
+							Nombre:
+						</p>
+						<input
+							value={username}
+							type="text"
+							className="py-3 border-1 w-[100%]"
+							placeholder="Ingrese su nombre"
+							onChange={(e) => {
+								setUsername(e.target.value);
+							}}
+						></input>
+					</div>
+					<div className="py-5">
+						<p className="text-left text-[20px] text-(--DText) pb-2">
+							Ingrese su nueva contraseña:
+						</p>
+						<input
+							value={password}
+							type="password"
+							className="py-3 border-1 w-[100%]"
+							placeholder="Ingrese su contraseña"
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+						></input>
+					</div>
+					<div>
+						<button className="bg-(--DLgBtn) w-[20%]" type="submit">
+							Registrarme
+						</button>
+					</div>
 				</form>
 			</div>
 		</>
