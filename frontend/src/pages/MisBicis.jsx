@@ -57,6 +57,12 @@ export default function MisBicis() {
 							<span className="font-medium">Carga:</span>{" "}
 							{biciSeleccionada.carga}%
 						</p>
+						<p className="text-lg text-(--DText) mb-4">
+							<span className="font-medium">
+								Tiempo Restante:
+							</span>{" "}
+							{biciSeleccionada.tiempo} horas
+						</p>
 
 						<button
 							className="mt-2 w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition"

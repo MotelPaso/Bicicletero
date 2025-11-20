@@ -43,3 +43,4 @@ Thumbs.db
 .idea/
 
 /backend/__pycache__
+*.pyc
