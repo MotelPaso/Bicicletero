@@ -1,13 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import base64
 import database
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # puedes limitarlo luego a ["http://localhost:5173"]
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -35,7 +34,6 @@ def addUser(data:dict):
     for user in database.users:
         if name == user["name"]:
             return False
-    pwd = hash(pwd)
     database.users.append({"name": name, "password": pwd, "acceso":False})
     return True
 
@@ -52,8 +50,16 @@ def checkUser(data:dict):
                 return False
     return False
 
+@app.post("/users/saveBici")
+def saveBici(idBici:int):
+    if (len(database.bicicletaSeleccionada) == 1):
+        database.bicicletaSeleccionada.clear()
+    database.bicicletaSeleccionada.append(database.bicicletas[idBici - 1])
+    database.bicicletas[idBici - 1]["disponible"] = False
+    return True
 
-def hash(pwd:str):
-    byte = pwd.encode("utf-8")
-    encoding = base64.b64encode(byte)
-    return encoding.decode("utf-8")
+@app.get("/users/getBiciSelect")
+def getBiciSelect():
+    if len(database.bicicletaSeleccionada) < 1:
+        return False
+    return database.bicicletaSeleccionada[0]

@@ -3,6 +3,7 @@ import Bicicleta from "./Bicicleta";
 
 export default function FormularioBicis({ mostrar, bicicletas }) {
 	const [biciSeleccionada, setBiciSeleccionada] = useState(null);
+	const [biciGuardada, setBiciGuardada] = useState(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -10,9 +11,24 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 			alert("Selecciona una bici antes de continuar.");
 			return;
 		}
-		// ejemplo: enviar al backend o manejar la seleccion
 		console.log("Bici seleccionada:", biciSeleccionada);
-		// aquí podrías hacer un fetch / api.post ...
+		guardarBici(biciSeleccionada);
+	};
+	const guardarBici = async (bici) => {
+		try {
+			const query = await fetch(
+				`http://127.0.0.1:8000/users/saveBici?idBici=${bici}`,
+				{
+					method: "POST",
+				}
+			);
+			if (query.ok) {
+				alert("Eleccion guardada en base de datos con id: " + bici);
+				setBiciGuardada(biciSeleccionada);
+			}
+		} catch (e) {
+			console.error(e);
+		}
 	};
 
 	return (
@@ -36,7 +52,7 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 					{bicicletas.length > 0 && (
 						<>
 							<h2 className="text-4xl text-(--DTitle) pb-4">
-								Bicicletas en la estacion:
+								Bicicletas en la estación:
 							</h2>
 
 							<form
@@ -70,6 +86,21 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 								</div>
 							</form>
 						</>
+					)}
+					{biciGuardada && (
+						<div className="text-(--DText)">
+							<h1 className="text-[20px]">Bicicleta guardada!</h1>
+							<p>
+								Ve a{" "}
+								<a
+									className="text-sky-500 hover:text-sky-700"
+									href="http://localhost:5173/mis-bicis"
+								>
+									Mis Bicicletas
+								</a>{" "}
+								para ver sus datos en detalle
+							</p>
+						</div>
 					)}
 				</div>
 			)}

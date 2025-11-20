@@ -3,13 +3,13 @@ import "../global.css";
 export default function About() {
 	return (
 		<div className="flex flex-row justify-center w-[100%]">
-			<div className="flex flex-col border-2 border-(--DBorder) w-[50%]">
+			<div className="flex flex-col border-2 border-(--DBorder) w-[35%]">
 				<h1 className="text-[30px] font-medium text-(--DTitle)">
 					Integrantes del proyecto
 				</h1>
 				<div className="flex flex-col text-(--DText)">
 					<Integrantes nombre="Paulo Araya" aporte="Lider" />
-					<Integrantes nombre="Diego Malebran" aporte="Organizador" />
+					<Integrantes nombre="Diego Malebrán" aporte="Organizador" />
 					<Integrantes nombre="Estefania Ulloa" aporte="Diseñadora" />
 					<Integrantes
 						nombre="Roger Villarroel"

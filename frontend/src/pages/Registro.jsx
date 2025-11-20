@@ -18,6 +18,7 @@ export default function Registro() {
 
 				if (data) {
 					alert("Registrado correctamente");
+					window.location.href = "http://localhost:5173/estaciones";
 				} else {
 					alert("Usuario ya existe en el sistema...");
 				}
@@ -42,17 +43,17 @@ export default function Registro() {
 					Registro
 				</h1>
 				<form
-					className="flex flex-col justify-center w-[50%]"
+					className="flex flex-col justify-center w-[30%]"
 					onSubmit={createNewUser}
 				>
 					<div className="py-5">
 						<p className="text-left text-[20px] text-(--DText) pb-2">
-							Nombre:
+							Ingrese su nombre de usuario:
 						</p>
 						<input
 							value={username}
 							type="text"
-							className="py-3 border-1 w-[100%]"
+							className="py-3 px-2 border-1 w-[100%]"
 							placeholder="Ingrese su nombre"
 							onChange={(e) => {
 								setUsername(e.target.value);
@@ -66,7 +67,7 @@ export default function Registro() {
 						<input
 							value={password}
 							type="password"
-							className="py-3 border-1 w-[100%]"
+							className="py-3 px-2 border-1 w-[100%]"
 							placeholder="Ingrese su contraseña"
 							onChange={(e) => {
 								setPassword(e.target.value);
@@ -74,7 +75,10 @@ export default function Registro() {
 						></input>
 					</div>
 					<div>
-						<button className="bg-(--DLgBtn) w-[20%]" type="submit">
+						<button
+							className="bg-(--DLgBtn) w-[30%] h-[30px] text-black font-medium"
+							type="submit"
+						>
 							Registrarme
 						</button>
 					</div>
