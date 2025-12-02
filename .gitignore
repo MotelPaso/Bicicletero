@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 .env
 
-dist
+
 dist-ssr
 *.local
 
@@ -26,7 +26,7 @@ dist-ssr
 # Node (React)
 node_modules/
 build/
-dist/
+
 .env
 
 # Python (FastAPI)
