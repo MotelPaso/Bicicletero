@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    # 1. Servicio para el Backend (FastAPI)
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        restart: always
+
+    # 2. Servicio para el Frontend (React/Nginx)
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        ports:
+            - "80:80" # HOST:CONTENEDOR. Acceso web estándar
+        depends_on:
+            - backend # Asegura que el backend inicie primero
+        restart: always
+
+networks:
+    default:
+        name: red_bicicletero

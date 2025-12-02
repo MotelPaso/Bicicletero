@@ -4,13 +4,30 @@ import database
 
 app = FastAPI()
 
+origins = [
+    # 1. Tu frontend (puerto 80)
+    "http://192.168.1.20",
+    "http://192.168.1.20:80",
+    # 2. Tu frontend durante desarrollo local (si usas otro puerto, ej. 3000)
+    "http://localhost",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    # 3. Permite la comunicación interna de Docker (opcional, pero útil)
+    "http://frontend",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 
 @app.get("/bicis")
 def getEstaciones():
