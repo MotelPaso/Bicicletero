@@ -16,7 +16,7 @@ services:
             context: ./frontend
             dockerfile: Dockerfile
         ports:
-            - "80:80" # HOST:CONTENEDOR. Acceso web estándar
+            - "8080:80" # HOST:CONTENEDOR. Acceso web estándar
         depends_on:
             - backend # Asegura que el backend inicie primero
         restart: always
