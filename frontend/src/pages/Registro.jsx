@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../services/api";
 
 export default function Registro() {
 	const [username, setUsername] = useState("");
@@ -6,22 +7,15 @@ export default function Registro() {
 
 	const checkExists = async (user) => {
 		try {
-			const query = await fetch("http://127.0.0.1:8000/users/addUser", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(user),
-			});
-			if (query.ok) {
-				const data = await query.json();
+			const query = await api.post("/users/addUser", user);
 
-				if (data) {
-					alert("Registrado correctamente");
-					window.location.href = "http://localhost:5173/estaciones";
-				} else {
-					alert("Usuario ya existe en el sistema...");
-				}
+			const data = response.data; // Los datos (JSON) de FastAPI ya están en response.data
+
+			if (data) {
+				alert("Registrado correctamente");
+				window.location.href = "http://192.168.1.20:8080/estaciones";
+			} else {
+				alert("Usuario ya existe en el sistema...");
 			}
 		} catch (e) {
 			console.error(e);

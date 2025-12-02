@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Bicicleta from "./Bicicleta";
+import api from "../services/api";
 
 export default function FormularioBicis({ mostrar, bicicletas }) {
 	const [biciSeleccionada, setBiciSeleccionada] = useState(null);
@@ -16,12 +17,7 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 	};
 	const guardarBici = async (bici) => {
 		try {
-			const query = await fetch(
-				`http://127.0.0.1:8000/users/saveBici?idBici=${bici}`,
-				{
-					method: "POST",
-				}
-			);
+			const query = await api.post(`/users/saveBici?idBici=${bici}`);
 			if (query.ok) {
 				alert("Eleccion guardada en base de datos con id: " + bici);
 				setBiciGuardada(biciSeleccionada);

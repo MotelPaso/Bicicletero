@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 
 function Login() {
 	const [loggedIn, isLogged] = useState(false);
@@ -12,22 +13,14 @@ function Login() {
 
 	const checkUser = async (user) => {
 		try {
-			const response = await fetch(
-				"http://127.0.0.1:8000/users/checkUser",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(user),
-				}
-			);
+			const response = await api.post("users/checkUser", user);
 
 			if (response.ok) {
 				const data = await response.json();
 				if (data) {
 					alert("Inicio de sesión exitoso");
-					window.location.href = "http://localhost:5173/estaciones"; // change to actual value
+					window.location.href =
+						"http://192.168.1.20:8080/estaciones";
 				} else {
 					alert("Credenciales incorrectas");
 				}
