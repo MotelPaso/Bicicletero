@@ -9,8 +9,7 @@ export default function MisBicis() {
 	const getBici = async () => {
 		try {
 			const datosBici = await api.get("/users/getBiciSelect");
-
-			if (datosBici !== false) {
+			if (datosBici.data !== false) {
 				setBiciSeleccionada(datosBici.data);
 			}
 		} catch (e) {
