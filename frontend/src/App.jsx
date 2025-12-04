@@ -6,11 +6,9 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Registro from "./pages/Registro";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-	const location = useLocation();
-
 	return (
 		<>
 			<NavBar />

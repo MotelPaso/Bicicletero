@@ -83,3 +83,8 @@ def getBiciSelect():
     if len(database.bicicletaSeleccionada) < 1:
         return False
     return database.bicicletaSeleccionada[0]
+
+@app.get("/resetBicis")
+def resetBicis():
+    database.bicicletaSeleccionada.clear()
+    return True

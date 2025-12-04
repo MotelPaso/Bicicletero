@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function Login() {
+	const navigate = useNavigate();
 	const [loggedIn, isLogged] = useState(false);
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -15,17 +16,13 @@ function Login() {
 		try {
 			const response = await api.post("users/checkUser", user);
 
-			if (response.ok) {
-				const data = await response.json();
-				if (data) {
-					alert("Inicio de sesión exitoso");
-					window.location.href =
-						"http://192.168.1.20:8080/estaciones";
-				} else {
-					alert("Credenciales incorrectas");
-				}
+			const data = response.data;
+			if (data) {
+				alert("Inicio de sesión exitoso");
+				isLogged(true);
+				navigate("/estaciones");
 			} else {
-				console.error("Error al iniciar sesión");
+				alert("Credenciales incorrectas");
 			}
 		} catch (error) {
 			console.error("Error de red:", error);

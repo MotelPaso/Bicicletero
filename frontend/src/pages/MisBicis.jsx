@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 export default function MisBicis() {
+	const navigate = useNavigate();
 	const [biciSeleccionada, setBiciSeleccionada] = useState(null);
 
 	const getBici = async () => {
@@ -16,8 +18,17 @@ export default function MisBicis() {
 		}
 	};
 	const returnBici = async () => {
-		alert("Bicicleta regresada.");
-		window.location.href = "http://localhost:5173/estaciones";
+		try {
+			const reset = await api.get("/resetBicis");
+			if (reset) {
+				alert("Bicicleta regresada.");
+				navigate("/estaciones");
+			} else {
+				console.log("api no conectada...");
+			}
+		} catch (e) {
+			console.error(e);
+		}
 	};
 
 	useEffect(() => {
@@ -34,8 +45,7 @@ export default function MisBicis() {
 						<button
 							className="bg-(--DLgBtn) w-[10vw]"
 							onClick={() => {
-								window.location.href =
-									"http://localhost:5173/estaciones";
+								navigate("/estaciones");
 							}}
 						>
 							Elegir una bici

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Bicicleta from "./Bicicleta";
 import api from "../services/api";
 
@@ -18,8 +19,8 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 	const guardarBici = async (bici) => {
 		try {
 			const query = await api.post(`/users/saveBici?idBici=${bici}`);
-			if (query.ok) {
-				alert("Eleccion guardada en base de datos con id: " + bici);
+			console.log(query);
+			if (query.data) {
 				setBiciGuardada(biciSeleccionada);
 			}
 		} catch (e) {
@@ -88,12 +89,12 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 							<h1 className="text-[20px]">Bicicleta guardada!</h1>
 							<p>
 								Ve a{" "}
-								<a
+								<Link
 									className="text-sky-500 hover:text-sky-700"
-									href="http://localhost:5173/mis-bicis"
+									to="/mis-bicis"
 								>
 									Mis Bicicletas
-								</a>{" "}
+								</Link>{" "}
 								para ver sus datos en detalle
 							</p>
 						</div>

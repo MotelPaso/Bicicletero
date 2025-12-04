@@ -1,7 +1,4 @@
-version: "3.8"
-
 services:
-    # 1. Servicio para el Backend (FastAPI)
     backend:
         build:
             context: ./backend
@@ -10,15 +7,14 @@ services:
             - "8000:8000"
         restart: always
 
-    # 2. Servicio para el Frontend (React/Nginx)
     frontend:
         build:
             context: ./frontend
             dockerfile: Dockerfile
         ports:
-            - "8080:80" # HOST:CONTENEDOR. Acceso web estándar
+            - "8080:80"
         depends_on:
-            - backend # Asegura que el backend inicie primero
+            - backend
         restart: always
 
 networks:

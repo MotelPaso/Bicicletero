@@ -1,19 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 export default function Registro() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
 	const checkExists = async (user) => {
 		try {
 			const query = await api.post("/users/addUser", user);
-
-			const data = response.data; // Los datos (JSON) de FastAPI ya están en response.data
-
-			if (data) {
+			console.log(query);
+			if (query) {
 				alert("Registrado correctamente");
-				window.location.href = "http://192.168.1.20:8080/estaciones";
+				navigate("/estaciones");
 			} else {
 				alert("Usuario ya existe en el sistema...");
 			}
