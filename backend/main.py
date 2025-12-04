@@ -8,7 +8,7 @@ origins = [
     # 1. Tu frontend (puerto 80)
     "http://192.168.1.20",
     "http://192.168.1.20:8080",
-    "http://179.8.199.30:8080/"
+    "http://179.8.199.30:8080",
     # 2. Tu frontend durante desarrollo local (si usas otro puerto, ej. 3000)
     "http://localhost",
     "http://localhost:3000",
