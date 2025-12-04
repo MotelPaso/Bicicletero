@@ -8,11 +8,13 @@ origins = [
     # 1. Tu frontend (puerto 80)
     "http://192.168.1.20",
     "http://192.168.1.20:8080",
+    "http://179.8.199.30:8080/"
     # 2. Tu frontend durante desarrollo local (si usas otro puerto, ej. 3000)
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:5173",
     "http://127.0.0.1:3000",
+
     # 3. Permite la comunicación interna de Docker (opcional, pero útil)
     "http://frontend",
 ]
