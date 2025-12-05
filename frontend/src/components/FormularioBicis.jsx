@@ -62,16 +62,19 @@ export default function FormularioBicis({ mostrar, bicicletas }) {
 									<p>Carga</p>
 								</div>
 
-								{bicicletas.map((bici) => (
-									<Bicicleta
-										key={bici.id}
-										bici={bici}
-										seleccionada={biciSeleccionada}
-										onSelect={() =>
-											setBiciSeleccionada(bici.id)
-										}
-									/>
-								))}
+								{bicicletas.map(
+									(bici) =>
+										bici.disponible && (
+											<Bicicleta
+												key={bici.id}
+												bici={bici}
+												seleccionada={biciSeleccionada}
+												onSelect={() =>
+													setBiciSeleccionada(bici.id)
+												}
+											/>
+										)
+								)}
 
 								<div className="mt-4">
 									<button
